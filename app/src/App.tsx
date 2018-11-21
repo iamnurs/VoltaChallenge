@@ -2,15 +2,12 @@ import React, { SFC } from 'react';
 import { configure } from 'mobx';
 import { Provider } from 'mobx-react';
 import Router from './router';
-// import rootStore from './stores';
-// import packageJson from '../package.json';
-
-// rootStore.settingsStore.setVersion(packageJson.version);
+import rootStore from './stores';
 
 configure({ enforceActions: true, computedRequiresReaction: true });
 const App: SFC = () => {
   return (
-    <Provider>
+    <Provider {...rootStore}>
       <Router />
     </Provider>
   );

@@ -1,3 +1,4 @@
-import PrimaryButton from './Buttons/PrimaryButton';
+import PrimaryButton from "./Buttons/PrimaryButton";
+import Map from "./Map";
 
-export { PrimaryButton };
+export { PrimaryButton, Map };

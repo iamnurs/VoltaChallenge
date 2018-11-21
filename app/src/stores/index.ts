@@ -1,14 +1,14 @@
-import AccountStore from './accountStore';
+import StationsStore from './stationsStore';
 
 class RootStore {
-  public accountStore: AccountStore;
+  public stationsStore: StationsStore;
 
   constructor() {
-    this.accountStore = new AccountStore();
+    this.stationsStore = new StationsStore();
   }
 }
 
 const rootStore = new RootStore();
 
 export default rootStore;
-export { AccountStore };
+export { StationsStore };
