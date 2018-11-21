@@ -1,3 +1,3 @@
-const baseUrl = 'sample url';
+import {fetchAllStations} from "./stationsApi"
 
-export { baseUrl };
+export { fetchAllStations };
