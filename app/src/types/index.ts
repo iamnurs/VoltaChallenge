@@ -1,3 +1,4 @@
 import IStationParams from "./station"
+import ICityParams from "./city"
 
-export {IStationParams}
+export {IStationParams, ICityParams}
