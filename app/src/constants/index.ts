@@ -1,3 +1,3 @@
-import COLORS from './colors';
+import { width, height } from "./dimensions";
 
-export { COLORS };
+export { width, height };
