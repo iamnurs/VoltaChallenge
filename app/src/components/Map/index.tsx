@@ -1,9 +1,9 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, MapViewProps } from "react-native-maps";
 import { IStationParams } from "@types";
 
-interface IProps {
+interface IProps extends MapViewProps {
   loaded: boolean;
   stations: IStationParams[];
 }
