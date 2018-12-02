@@ -1,13 +1,8 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-} from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { NavigationScreenProp, NavigationState } from "react-navigation";
 import { observer, inject } from "mobx-react";
 import { width } from "@constants";
-import { fetchStation } from "@api";
 
 interface IProps {
   navigation: NavigationScreenProp<NavigationState>;
@@ -16,10 +11,6 @@ interface IProps {
 @inject("stationsStore")
 @observer
 export default class StationInfo extends React.Component<IProps> {
-  public async componentDidMount() {
-    await fetchStation(this.props.navigation.state.params.id);
-  }
-
   public render() {
     return (
       <View style={styles.container}>

@@ -1,3 +1,3 @@
-import { fetchAllStations, fetchStation } from "./stationsApi";
+import { fetchAllStations } from "./stationsApi";
 
-export { fetchAllStations, fetchStation };
+export { fetchAllStations };

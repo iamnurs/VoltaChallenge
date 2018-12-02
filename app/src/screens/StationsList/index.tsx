@@ -21,7 +21,7 @@ interface IProps {
 export default class StationsList extends React.Component<IProps> {
   public static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.state.params.city
+      title: navigation.getParam("city")
     };
   };
 
@@ -34,9 +34,17 @@ export default class StationsList extends React.Component<IProps> {
     return (
       <View style={styles.container}>
         <FlatList
-          data={stationsStore.stations.filter(
-            item => item.city === this.props.navigation.state.params.city
-          )}
+          data={stationsStore.stations.filter(item => {
+            const { city, state } = item;
+            if (city && state) {
+              return (
+                city.toLowerCase() ===
+                  this.props.navigation.getParam("city").toLowerCase() &&
+                state.toLowerCase() ===
+                  this.props.navigation.getParam("state").toLowerCase()
+              );
+            }
+          })}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
         />

@@ -14,10 +14,14 @@ class CitiesStore {
 
     stations.map(item => {
       if (item.city) {
-        const city = cities.find(
-          element => element.name === item.city && element.state === item.state
+        const city = item.city.toLowerCase();
+        const state = item.state.toLowerCase();
+        const foundCity = cities.find(
+          element =>
+            element.name.toLowerCase() === city &&
+            element.state.toLowerCase() === state
         );
-        if (!city) {
+        if (!foundCity) {
           const tempCity = {
             name: item.city,
             stationsNumber: 1,
@@ -27,7 +31,7 @@ class CitiesStore {
           };
           cities = [...cities, tempCity];
         } else {
-          city.stationsNumber += 1;
+          foundCity.stationsNumber += 1;
         }
       }
     });

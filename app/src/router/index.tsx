@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { StackNavigator, TabNavigator, TabBarBottom } from "react-navigation";
+import { StackNavigator, createBottomTabNavigator } from "react-navigation";
 import { Welcome, StationsList, CitiesList, StationInfo } from "@screens";
 
 const ListStack = StackNavigator({
@@ -21,7 +21,7 @@ const ListStack = StackNavigator({
   }
 });
 
-const TapBar = TabNavigator(
+const TapBar = createBottomTabNavigator(
   {
     Map: {
       screen: Welcome,
@@ -41,8 +41,6 @@ const TapBar = TabNavigator(
     }
   },
   {
-    tabBarComponent: TabBarBottom,
-    tabBarPosition: "bottom",
     tabBarOptions: {
       style: {
         height: 50

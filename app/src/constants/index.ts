@@ -1,3 +1,4 @@
 import { width, height } from "./dimensions";
+import { STATES } from "./states";
 
-export { width, height };
+export { width, height, STATES };

@@ -13,13 +13,11 @@
     "precommit": "tsc -p . && lint-staged",
     "check-env": "solidarity",
     "save-env": "solidarity snapshot",
-    "android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
+    "android-linux":
+      "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "tslint 'src/**/*.ts?(x)' --format stylish",
-      "git add"
-    ]
+    "*.{ts,tsx}": ["tslint 'src/**/*.ts?(x)' --format stylish", "git add"]
   },
   "dependencies": {
     "mobx": "^4.3.0",
@@ -27,9 +25,10 @@
     "mobx-react": "^5.1.2",
     "react": "16.3.1",
     "react-native": "0.55.4",
+    "react-native-elements": "^0.19.1",
     "react-native-maps": "^0.22.1",
     "react-native-vector-icons": "4.5.0",
-    "react-navigation": "1.0.3"
+    "react-navigation": "^2.8.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.2.0",
