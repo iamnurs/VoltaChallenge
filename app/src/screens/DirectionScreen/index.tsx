@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { NavigationScreenProp, NavigationState } from "react-navigation";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, LatLng } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 
 interface IProps {
@@ -10,18 +10,17 @@ interface IProps {
 
 interface IState {
   stationsLoaded: boolean;
+  initialRegion: LatLng;
 }
-
-const initialRegion = {
-  latitude: 37.78825,
-  longitude: -122.4324
-};
-
 const API_KEY = "AIzaSyANRoSod9IJ7g6AF60Mq-gDWOJtHzDDJWE";
 
 export default class DirecrionScreen extends React.Component<IProps, IState> {
   public state = {
-    stationsLoaded: false
+    stationsLoaded: false,
+    initialRegion: {
+      latitude: 37.78825,
+      longitude: -122.4324
+    }
   };
 
   public map: MapView;
@@ -34,7 +33,7 @@ export default class DirecrionScreen extends React.Component<IProps, IState> {
       longitude: station.location.coordinates[0]
     };
     this.coordsFitTimeout = setTimeout(() => {
-      this.map.fitToCoordinates([initialRegion, destinationCoords], {
+      this.map.fitToCoordinates([this.state.initialRegion, destinationCoords], {
         edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
         animated: true
       });
@@ -59,19 +58,20 @@ export default class DirecrionScreen extends React.Component<IProps, IState> {
           style={styles.container}
           ref={ref => (this.map = ref)}
           initialRegion={{
-            latitude: initialRegion.latitude,
-            longitude: initialRegion.longitude,
+            latitude: this.state.initialRegion.latitude,
+            longitude: this.state.initialRegion.longitude,
             latitudeDelta: 0.09,
             longitudeDelta: 0.09
           }}
         >
           <Marker
-            coordinate={initialRegion}
+            coordinate={this.state.initialRegion}
             title="You are here"
+            pinColor="violet"
           />
           <Marker coordinate={destinationCoords} title={station.name} />
           <MapViewDirections
-            origin={initialRegion}
+            origin={this.state.initialRegion}
             destination={destinationCoords}
             apikey={API_KEY}
             strokeWidth={3}

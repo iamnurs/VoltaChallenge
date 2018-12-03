@@ -24,12 +24,6 @@ const ListStack = StackNavigator({
     navigationOptions: {
       title: "Station"
     }
-  },
-  Directions: {
-    screen: DirectionScreen,
-    navigationOptions: {
-      title: "Directions"
-    }
   }
 });
 
@@ -62,15 +56,19 @@ const TapBar = createBottomTabNavigator(
   }
 );
 
-const Router = StackNavigator(
-  {
-    Tab: {
-      screen: TapBar
+const Router = StackNavigator({
+  Tab: {
+    screen: TapBar,
+    navigationOptions: {
+      header: null
     }
   },
-  {
-    headerMode: "none"
+  Directions: {
+    screen: DirectionScreen,
+    navigationOptions: {
+      title: "Directions"
+    }
   }
-);
+});
 
 export default Router;
