@@ -1,7 +1,13 @@
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { StackNavigator, createBottomTabNavigator } from "react-navigation";
-import { MapScreen, StationsList, CitiesList, StationInfo } from "@screens";
+import {
+  MapScreen,
+  StationsList,
+  CitiesList,
+  StationInfo,
+  DirectionScreen
+} from "@screens";
 
 const ListStack = StackNavigator({
   Cities: {
@@ -17,6 +23,12 @@ const ListStack = StackNavigator({
     screen: StationInfo,
     navigationOptions: {
       title: "Station"
+    }
+  },
+  Directions: {
+    screen: DirectionScreen,
+    navigationOptions: {
+      title: "Directions"
     }
   }
 });
