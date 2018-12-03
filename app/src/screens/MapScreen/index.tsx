@@ -16,7 +16,7 @@ interface IState {
 
 @inject("stationsStore")
 @observer
-export default class Welcome extends React.Component<IProps, IState> {
+export default class MapScreen extends React.Component<IProps, IState> {
   public state = {
     stationsLoaded: false
   };

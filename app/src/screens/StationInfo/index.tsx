@@ -2,19 +2,39 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { NavigationScreenProp, NavigationState } from "react-navigation";
 import { observer, inject } from "mobx-react";
-import { width } from "@constants";
+import { Card, Button } from "react-native-elements";
+import { StationsStore } from "@stores";
 
 interface IProps {
   navigation: NavigationScreenProp<NavigationState>;
+  stationsStore?: StationsStore;
 }
 
 @inject("stationsStore")
 @observer
 export default class StationInfo extends React.Component<IProps> {
   public render() {
+    const { stationsStore } = this.props;
+    const station = stationsStore.stations.find(
+      item => item.id === this.props.navigation.getParam("id")
+    );
     return (
       <View style={styles.container}>
-        <Text>qwe</Text>
+        <Card title="Name">
+          <Text>{station.name}</Text>
+        </Card>
+        <Card title="Street Address">
+          <Text>{station.street_address}</Text>
+        </Card>
+        <Card title="Status">
+          <Text>{station.status}</Text>
+        </Card>
+        <Button
+          title="Show Directions"
+          onPress={() => true}
+          icon={{ name: "directions", type: "font-awesome5" }}
+          containerViewStyle={styles.button}
+        />
       </View>
     );
   }
@@ -22,23 +42,9 @@ export default class StationInfo extends React.Component<IProps> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center"
+    flex: 1
   },
-  indicator: {
-    position: "absolute",
-    alignSelf: "center"
-  },
-  wrapper: {
-    paddingLeft: 10,
-    borderBottomWidth: 1,
-    justifyContent: "center",
-    backgroundColor: "#fff",
-    width
-  },
-  stationNames: {
-    fontSize: 17,
-    color: "#000",
-    fontWeight: "bold"
+  button: {
+    marginTop: 10
   }
 });
