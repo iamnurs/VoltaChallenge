@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { StackNavigator, createBottomTabNavigator } from "react-navigation";
-import { Welcome, StationsList, CitiesList, StationInfo } from "@screens";
+import { MapScreen, StationsList, CitiesList, StationInfo } from "@screens";
 
 const ListStack = StackNavigator({
   Cities: {
@@ -24,7 +24,7 @@ const ListStack = StackNavigator({
 const TapBar = createBottomTabNavigator(
   {
     Map: {
-      screen: Welcome,
+      screen: MapScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="map" size={24} color={tintColor} />
