@@ -21,8 +21,8 @@ export default class Map extends React.Component<IProps> {
           initialRegion={{
             latitude: 37.78825,
             longitude: -122.4324,
-            latitudeDelta: 3,
-            longitudeDelta: 3
+            latitudeDelta: 0.09,
+            longitudeDelta: 0.09
           }}
         >
           {this.props.loaded &&

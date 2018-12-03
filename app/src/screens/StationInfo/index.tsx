@@ -31,7 +31,9 @@ export default class StationInfo extends React.Component<IProps> {
         </Card>
         <Button
           title="Show Directions"
-          onPress={() => true}
+          onPress={() =>
+            this.props.navigation.navigate("Directions", { station })
+          }
           icon={{ name: "directions", type: "font-awesome5" }}
           containerViewStyle={styles.button}
         />
