@@ -18,12 +18,6 @@ const ListStack = StackNavigator({
   },
   Stations: {
     screen: StationsList
-  },
-  Info: {
-    screen: StationInfo,
-    navigationOptions: {
-      title: "Station"
-    }
   }
 });
 
@@ -67,6 +61,12 @@ const Router = StackNavigator({
     screen: DirectionScreen,
     navigationOptions: {
       title: "Directions"
+    }
+  },
+  Info: {
+    screen: StationInfo,
+    navigationOptions: {
+      title: "Station"
     }
   }
 });

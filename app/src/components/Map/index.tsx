@@ -1,12 +1,14 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import { NavigationScreenProp, NavigationState } from "react-navigation";
 import { observer, inject } from "mobx-react";
 import { IStationParams } from "@types";
 import { LocationStore } from "@stores";
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from "@constants";
 
 interface IProps {
+  navigation: NavigationScreenProp<NavigationState>;
   loaded?: boolean;
   stations?: IStationParams[];
   locationStore?: LocationStore;
@@ -33,7 +35,12 @@ class Map extends React.Component<IProps> {
   }
 
   public render() {
-    const { loaded = false, stations = [], locationStore } = this.props;
+    const {
+      loaded = false,
+      stations = [],
+      locationStore,
+      navigation
+    } = this.props;
     return (
       <MapView style={styles.map} ref={ref => (this.map = ref)}>
         {locationStore.location && (
@@ -53,6 +60,9 @@ class Map extends React.Component<IProps> {
               }}
               title={station.name}
               description={station.status}
+              onCalloutPress={() =>
+                navigation.navigate("Info", { id: station.id })
+              }
             />
           ))}
       </MapView>
