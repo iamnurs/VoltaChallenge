@@ -6793,6 +6793,18 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.2, react-lifecycles-com
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-android-location-enabler@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-native-android-location-enabler/-/react-native-android-location-enabler-1.0.8.tgz#faa42f8b14adc0099bdec5fb3ac1d92c9804e953"
+  integrity sha512-gMb5pldxumR7VKVWwoTHOaeoeoFdHM5VN/bqPM+4dVHCm/sTLBmLiCEfsrc/36usVYe1p8m2Xi7K0ru3r83bPw==
+
+react-native-animatable@^1.2.4:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.0.tgz#b5c3940fc758cfd9b2fe54613a457c4b6962b46e"
+  integrity sha512-GGYEYvderfzPZcPnw7xov4nlRmi9d6oqcIzx0fGkUUsMshOQEtq5IEzFp3np0uTB9n8/gZIZcdbUPggVlVydMg==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
@@ -6841,6 +6853,14 @@ react-native-maps@^0.22.1:
   version "0.22.1"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.22.1.tgz#ce856e71970e872e596e6fa4773279cae2c4dcdd"
   integrity sha512-JjBpAXjzZY8AW4HTcAZxX+cGk6e6i+J5Vd//DViMUe0bRkKKv92ds1W9rqZ+o9PhUqdP++3DvKv0jrB05icqKA==
+
+react-native-modal@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-7.0.1.tgz#120df1966f5da96e9d89bf384f22b79ab6ca97b1"
+  integrity sha512-I/BZ4ZkVLjD/wApvSjqp/w9+J100czFNGB+SNm3oYHKAfPfm5g1OoB9UQT6DvChmG4TiVX8kiDXTm8FNrbkWpQ==
+  dependencies:
+    prop-types "^15.6.1"
+    react-native-animatable "^1.2.4"
 
 react-native-safe-area-view@0.11.0:
   version "0.11.0"

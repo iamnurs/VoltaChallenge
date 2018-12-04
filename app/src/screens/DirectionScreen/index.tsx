@@ -1,39 +1,34 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { NavigationScreenProp, NavigationState } from "react-navigation";
-import MapView, { Marker, LatLng } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
+import { observer, inject } from "mobx-react";
+import { LocationStore } from "@stores";
+import { LATITUDE_DELTA, LONGITUDE_DELTA } from "@constants";
 
 interface IProps {
   navigation: NavigationScreenProp<NavigationState>;
+  locationStore?: LocationStore;
 }
 
-interface IState {
-  stationsLoaded: boolean;
-  initialRegion: LatLng;
-}
 const API_KEY = "AIzaSyANRoSod9IJ7g6AF60Mq-gDWOJtHzDDJWE";
 
-export default class DirecrionScreen extends React.Component<IProps, IState> {
-  public state = {
-    stationsLoaded: false,
-    initialRegion: {
-      latitude: 37.78825,
-      longitude: -122.4324
-    }
-  };
-
+@inject("locationStore")
+@observer
+export default class DirecrionScreen extends React.Component<IProps> {
   public map: MapView;
   public coordsFitTimeout;
 
   public componentDidMount() {
     const station = this.props.navigation.getParam("station");
+    const { locationStore } = this.props;
     const destinationCoords = {
       latitude: station.location.coordinates[1],
       longitude: station.location.coordinates[0]
     };
     this.coordsFitTimeout = setTimeout(() => {
-      this.map.fitToCoordinates([this.state.initialRegion, destinationCoords], {
+      this.map.fitToCoordinates([locationStore.location, destinationCoords], {
         edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
         animated: true
       });
@@ -47,6 +42,7 @@ export default class DirecrionScreen extends React.Component<IProps, IState> {
   }
 
   public render() {
+    const { locationStore } = this.props;
     const station = this.props.navigation.getParam("station");
     const destinationCoords = {
       latitude: station.location.coordinates[1],
@@ -58,20 +54,20 @@ export default class DirecrionScreen extends React.Component<IProps, IState> {
           style={styles.container}
           ref={ref => (this.map = ref)}
           initialRegion={{
-            latitude: this.state.initialRegion.latitude,
-            longitude: this.state.initialRegion.longitude,
-            latitudeDelta: 0.09,
-            longitudeDelta: 0.09
+            latitude: locationStore.location.latitude,
+            longitude: locationStore.location.longitude,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA
           }}
         >
           <Marker
-            coordinate={this.state.initialRegion}
+            coordinate={locationStore.location}
             title="You are here"
             pinColor="violet"
           />
           <Marker coordinate={destinationCoords} title={station.name} />
           <MapViewDirections
-            origin={this.state.initialRegion}
+            origin={locationStore.location}
             destination={destinationCoords}
             apikey={API_KEY}
             strokeWidth={3}
