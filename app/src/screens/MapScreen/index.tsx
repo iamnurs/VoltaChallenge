@@ -57,16 +57,17 @@ export default class MapScreen extends React.Component<IProps, IState> {
     return (
       <View style={styles.container}>
         <Map
+          navigation={this.props.navigation}
           loaded={this.state.stationsLoaded}
           stations={stationsStore.stations}
         />
         <Modal isVisible={!this.state.stationsLoaded} style={styles.modal}>
           <ActivityIndicator size="large" />
-          <Text>Wait a while, getting stations</Text>
+          <Text>Wait a while, getting stations...</Text>
         </Modal>
         <Button
           title="Find Closest"
-          onPress={() => this.handleOnPress(stationsStore.stations)}
+          onPress={() => this.handleOnButtonPress(stationsStore.stations)}
           icon={{ name: "directions", type: "font-awesome5" }}
           disabled={!this.state.stationsLoaded}
         />
@@ -74,7 +75,7 @@ export default class MapScreen extends React.Component<IProps, IState> {
     );
   }
 
-  private handleOnPress = (stations: IStationParams[]) => {
+  private handleOnButtonPress = (stations: IStationParams[]) => {
     const { locationStore } = this.props;
     const closestStation = findClosestStation(locationStore.location, stations);
     this.props.navigation.navigate("Directions", { station: closestStation });
