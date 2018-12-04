@@ -76,10 +76,6 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject
-  },
-  indicator: {
-    position: "absolute",
-    alignSelf: "center"
   }
 });
 

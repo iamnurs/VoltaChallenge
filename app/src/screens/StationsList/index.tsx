@@ -68,11 +68,6 @@ export default class StationsList extends React.Component<IProps> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center"
-  },
-  indicator: {
-    position: "absolute",
-    alignSelf: "center"
   },
   wrapper: {
     paddingLeft: 10,
