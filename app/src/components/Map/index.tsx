@@ -1,37 +1,48 @@
-import React, { FunctionComponent } from "react";
-import { View, StyleSheet } from "react-native";
-import MapView, { Marker, LatLng } from "react-native-maps";
+import React from "react";
+import { StyleSheet } from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import { observer, inject } from "mobx-react";
 import { IStationParams } from "@types";
+import { LocationStore } from "@stores";
+import { LATITUDE_DELTA, LONGITUDE_DELTA } from "@constants";
 
 interface IProps {
   loaded?: boolean;
   stations?: IStationParams[];
-  curLocation?: LatLng;
+  locationStore?: LocationStore;
 }
 
-const Map: FunctionComponent<IProps> = props => {
-  const {
-    loaded = false,
-    stations = [],
-    curLocation = { latitude: 37.78825, longitude: -122.4324 }
-  } = props;
+@inject("locationStore")
+@observer
+class Map extends React.Component<IProps> {
+  public map: MapView;
 
-  return (
-    <View style={styles.container}>
-      <MapView
-        style={styles.container}
-        initialRegion={{
-          latitude: curLocation.latitude,
-          longitude: curLocation.longitude,
-          latitudeDelta: 0.09,
-          longitudeDelta: 0.09
-        }}
-      >
-        <Marker
-          coordinate={curLocation}
-          title="You are here"
-          pinColor="violet"
-        />
+  public componentDidUpdate() {
+    const { locationStore } = this.props;
+    if (locationStore.location) {
+      this.map.animateToRegion(
+        {
+          latitude: locationStore.location.latitude,
+          longitude: locationStore.location.longitude,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA
+        },
+        1000
+      );
+    }
+  }
+
+  public render() {
+    const { loaded = false, stations = [], locationStore } = this.props;
+    return (
+      <MapView style={styles.map} ref={ref => (this.map = ref)}>
+        {locationStore.location && (
+          <Marker
+            coordinate={locationStore.location}
+            title="You are here"
+            pinColor="violet"
+          />
+        )}
         {loaded &&
           stations.map(station => (
             <Marker
@@ -45,13 +56,16 @@ const Map: FunctionComponent<IProps> = props => {
             />
           ))}
       </MapView>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject
   },
   indicator: {
     position: "absolute",

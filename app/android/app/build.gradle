@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-android-location-enabler')
     implementation project(':react-native-maps')
     implementation project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])
