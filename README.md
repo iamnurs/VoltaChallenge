@@ -2,7 +2,9 @@
 
 ## Getting Started <a name="gettingstarted"></a>
 
-**NOTE**: App was not tested on IOS, because I did not have access to any Apple product. Please run it on Android emulator, I guess on IOS it will not even open
+**NOTE#1**: API key for google map is no longer active. To launch, please, add your own API key for google maps to ```android/app/src/main/AndroidManifest.xml```
+
+**NOTE#2**: App was not tested on IOS, because I did not have access to any Apple product. Please run it on Android emulator, I guess on IOS it will not even open
 
 Clone the repo
 
